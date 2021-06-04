@@ -68,7 +68,7 @@ const VideoInputProvider: React.FC = ({ children }) => {
         return;
       }
 
-      const devices = await audioVideo.listVideoInputDevices();
+      const devices = await audioVideo.listVideoInputDevices(true);
 
       if (isMounted) {
         setVideoInputs(devices);
@@ -76,6 +76,7 @@ const VideoInputProvider: React.FC = ({ children }) => {
       }
     }
 
+    meetingManager.invokeVideoInputProvider = initVideoInput;
     initVideoInput();
 
     return () => {
@@ -108,7 +109,7 @@ const useVideoInputs = (props?: DeviceConfig): DeviceTypeContext => {
   let { devices } = context;
   const { selectedDevice } = context;
   const { selectDeviceError } = context;
-  
+
   if (needAdditionalIO) {
     const additionalVideoInputs = getFormattedDropdownDeviceOptions(
       additionalIOJSON

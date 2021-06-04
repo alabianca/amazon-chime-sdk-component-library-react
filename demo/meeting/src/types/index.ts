@@ -34,3 +34,17 @@ export type ContentShareControlContextType = {
   toggleContentShare: () => Promise<void>;
   togglePauseContentShare: () => void;
 };
+
+export enum DeviceLabels {
+  None,
+  Audio,
+  Video,
+  AudioAndVideo,
+};
+
+export enum MeetingMode {
+  Spectator,
+  Attendee,
+};
+
+export type DeviceLabelTrigger = () => Promise<MediaStream>;

@@ -96,7 +96,7 @@ const AudioInputProvider: React.FC = ({ children }) => {
         return;
       }
 
-      const devices = await audioVideo.listAudioInputDevices();
+      const devices = await audioVideo.listAudioInputDevices(true);
 
       if (isMounted) {
         setAudioInputs(devices);
@@ -104,6 +104,7 @@ const AudioInputProvider: React.FC = ({ children }) => {
       }
     }
 
+    meetingManager.invokeAudioInputProvider = initAudioInput;
     initAudioInput();
 
     return () => {
@@ -135,7 +136,7 @@ const useAudioInputs = (props?: DeviceConfig): DeviceTypeContext => {
   let { devices } = context;
   const { selectedDevice } = context;
   const { selectDeviceError } = context;
-  
+
   if (needAdditionalIO) {
     const additionalAudioInputs = getFormattedDropdownDeviceOptions(
       AUDIO_INPUT

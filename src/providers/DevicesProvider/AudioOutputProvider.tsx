@@ -51,7 +51,7 @@ const AudioOutputProvider: React.FC = ({ children }) => {
         return;
       }
 
-      const devices = await audioVideo.listAudioOutputDevices();
+      const devices = await audioVideo.listAudioOutputDevices(true);
 
       if (isMounted) {
         setAudioOutputs(devices);
@@ -59,6 +59,7 @@ const AudioOutputProvider: React.FC = ({ children }) => {
       }
     }
 
+    meetingManager.invokeAudioOutputProvider = initAudioOutput;
     initAudioOutput();
 
     return () => {

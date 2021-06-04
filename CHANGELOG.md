@@ -7,14 +7,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Fixed
+
+### Added
+
+- Added optional parameter `deviceLabels` in `meetingManager.join()`, and `invokeDeviceProvider(deviceLabels: DeviceLabels)` function to control the device permission request. Builder could pass a `deviceLabels` of type `DeviceLabels` to select the devices from which the browser requests permission when joining the meeting. Builder could also pass a `deviceLabels` of `DeviceLabelTrigger` type, to set their customized `deviceLabelTrigger` which is triggered to get the device info. Builder could call `invokeDeviceProvider(deviceLabels: DeviceLabels)` to trigger the device permission prompts. For example, builder wants to implement a view-only mode and no device permission prompts are triggered during the whole process. Builder could just call `meetingManager.join(DeviceLabels.None)` to join a meeting. Later they trigger the device permission prompts by calling `meetingManager.invokeDeviceProvider(DeviceLabels.AudioAndVideo)` to get the full access to devices.
+
+### Changed
+
+### Removed
+
 ## [2.5.0] - 2021-05-27
 
 ### Fixed
+
 - [Demo] Fix post logging in the demo meeting app.
 
 ### Added
-- [Doc] Add documentaion in introduction on how to use `MeetingSessionPostLogger` to post
-  Amazon Chime JS SDK logs.
+
+- [Doc] Add documentation in introduction on how to use `MeetingSessionPostLogger` to post Amazon Chime JS SDK logs.
 - Add `useMediaStreamMetrics` hook to expose audio, video and bandwidth data.
 
 ### Changed
@@ -24,8 +37,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [2.4.0] - 2021-05-12
 
 ### Fixed
-- Add or remove event listener only when `el.current` reference is valid
-  in `useFocusIn` and `useMouseMove` hooks.
+
+- Add or remove event listener only when `el.current` reference is valid in `useFocusIn` and `useMouseMove` hooks.
 - Fix bug related to `PreviewVideo` component not releasing media stream when unmounted.
 - Correct `IconButton` border in dark theme.
 
@@ -34,12 +47,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added optional props to specify icon titles in the `AudioInputControl` and `ContentShareControl` components.
 - Added optional props to specify the dropdown text that shows when no video quality is selected, in the `QualitySelection` component.
 - Added observer to `selectAudioInputDeviceError` and `selectVideoInputDeviceError` to deliver the error from SDK level to client application level.
-  
+
 ### Changed
 
 - Change `package-lock` to V2 to support NPM 7.
-- Update `engines` field in `package.json` to include Node 16
-- Bump `hosted-git-info` version
+- Update `engines` field in `package.json` to include Node 16.
+- Bump `hosted-git-info` version.
 
 ### Removed
 
